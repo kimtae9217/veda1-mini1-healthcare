@@ -32,7 +32,7 @@
 
 using namespace std;
 
-void menu(mealmanage& mealmanager) {
+void menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수
     int choice;
     do {
         cout << "\n*** 식사 관리 ***" << endl;
@@ -101,7 +101,7 @@ int main() {
     cout << "3. 식단관리" << endl;
     cin >> main_num;
 
-    if (main_num == 1) {
+    if (main_num == 1) { // 고객관리 저장 내용 출력
         string filename = "customers.csv";
         vector<Customer> customers = readCustomersFromCSV(filename);
 
@@ -111,13 +111,13 @@ int main() {
         }
     }
 
-    else if (main_num == 3) {
+    else if (main_num == 3) { // 식사관리 레이아웃 함수를 출력
 
         mealmanager.loadFromCSV(meal_filename);
         menu(mealmanager);
     }
 
-    mealmanager.saveToCSV(meal_filename);
+    mealmanager.saveToCSV(meal_filename); // 입력 및 수정한 내용 저장
 
     return 0;
 }

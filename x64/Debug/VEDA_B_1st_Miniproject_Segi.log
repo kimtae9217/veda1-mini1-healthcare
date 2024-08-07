@@ -1,0 +1,7 @@
+﻿  customer.cpp
+  main.cpp
+C:\Users\hancom\Documents\GitHub\veda1-mini1-healthcare\main.cpp(91,9): warning C4101: 'meal_num' :참조되지 않은 지역 변수입니다.
+  meal.cpp
+  product.cpp
+  코드를 생성하고 있습니다...
+  VEDA_B_1st_Miniproject_Segi.vcxproj -> C:\Users\hancom\Documents\GitHub\veda1-mini1-healthcare\x64\Debug\VEDA_B_1st_Miniproject_Segi.exe

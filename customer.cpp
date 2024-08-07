@@ -13,7 +13,7 @@ vector<Customer> readCustomersFromCSV(const string& filename) {
     }
 
     string line;
-    while (getline(file, line)) {
+    while (getline(file, line)) { // getline으로 받아서 벡터에 저장
         stringstream ss(line);
         string idStr, name, phoneNumber, email;
 

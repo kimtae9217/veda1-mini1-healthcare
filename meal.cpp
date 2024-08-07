@@ -12,7 +12,7 @@ void mealmanage::loadFromCSV(const string& filename) {
     }
 
     string line;
-    while (getline(file, line)) {
+    while (getline(file, line)) { // getline으로 토큰 단위로 읽어들임
         stringstream ss(line);
         string idStr, name, food, totalCaloriesStr;
 
@@ -31,7 +31,7 @@ void mealmanage::loadFromCSV(const string& filename) {
     file.close();
 }
 
-void mealmanage::saveToCSV(const string& filename) {
+void mealmanage::saveToCSV(const string& filename) { // 변경 내용 저장
     ofstream file(filename);
 
     if (!file.is_open()) {
@@ -46,11 +46,11 @@ void mealmanage::saveToCSV(const string& filename) {
     file.close();
 }
 
-void mealmanage::addMeal(const meal& meal) {
+void mealmanage::addMeal(const meal& meal) { // 식사관리 입력 기능
     meals.push_back(meal);
 }
 
-void mealmanage::modifyMeal(int id, const meal& meal) {
+void mealmanage::modifyMeal(int id, const meal& meal) { // 식사관리 수정 기능
     for (auto& m : meals) {
         if (m.id == id) {
             m.name = meal.name;
@@ -62,11 +62,11 @@ void mealmanage::modifyMeal(int id, const meal& meal) {
     cout << "ID에 해당하는 식사가 없습니다." << endl;
 }
 
-void mealmanage::deleteMeal(int id) {
+void mealmanage::deleteMeal(int id) { // 식사관리 삭제 기능
     meals.erase(remove_if(meals.begin(), meals.end(), [id](const meal& m) { return m.id == id; }), meals.end());
 }
 
-void mealmanage::displayMeals() const {
+void mealmanage::displayMeals() const { // csv에 저장되어있는 값 출력
     for (const auto& meal : meals) {
         meal.display();
     }

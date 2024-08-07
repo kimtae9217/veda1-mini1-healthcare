@@ -9,7 +9,7 @@ using namespace std;
 
 class mealmanage {
 public:
-    vector<meal> meals;
+    vector<meal> meals; // º¤ÅÍ ¼±¾ð
 
     void loadFromCSV(const string& filename);
     void saveToCSV(const string& filename);

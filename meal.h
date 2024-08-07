@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class meal {
+class meal { // 식사관리 클래스
 public:
     int id;
     string name;
@@ -16,7 +16,7 @@ public:
     meal(int id, string name, string food, int totalCalories)
         : id(id), name(name), food(food), totalCalories(totalCalories) {}
 
-    void display() const {
+    void display() const { // 출력 함수
         cout << "ID: " << id << ", Name: " << name << ", Food: " << food << ", Total Calories: " << totalCalories << endl;
     }
 };
