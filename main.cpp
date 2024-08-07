@@ -44,7 +44,7 @@ void menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수
         cout << "선택: ";
         cin >> choice;
 
-        if (choice == 1) {
+        if (choice == 1) { // 식사관리 입력 함수 호출
             int id, totalCalories;
             string name, food;
             cout << "ID: ";
@@ -57,7 +57,7 @@ void menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수
             cin >> totalCalories;
             mealmanager.addMeal(meal(id, name, food, totalCalories));
         }
-        else if (choice == 2) {
+        else if (choice == 2) { // 식사관리 수정 함수 호출
             int id, totalCalories;
             string name, food;
             cout << "수정할 식사의 ID: ";
@@ -70,20 +70,24 @@ void menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수
             cin >> totalCalories;
             mealmanager.modifyMeal(id, meal(id, name, food, totalCalories));
         }
-        else if (choice == 3) {
+        else if (choice == 3) { // 식사관리 삭제 함수 호출
             int id;
             cout << "삭제할 식사의 ID: ";
             cin >> id;
             mealmanager.deleteMeal(id);
         }
-        else if (choice == 4) {
+        else if (choice == 4) { // 저장된 식사관리 csv파일 내용 출력
             mealmanager.displayMeals();
         }
-        else if (choice != 0) {
-            cout << "잘못된 선택입니다." << endl;
+        else if (choice != 0) { // 아직 메인으로 돌아가는 부분은 구현 X
+            cout << "잘못된 선택입니다." << endl; 
         }
     } while (choice != 0);
 }
+
+/*
+    메인 함수의 초기 메뉴 출력 부분도 함수로 따로 빼서 작성할 예정
+*/
 
 int main() {
 
