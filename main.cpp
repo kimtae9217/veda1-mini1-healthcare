@@ -32,7 +32,7 @@
 
 using namespace std;
 
-void menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수
+bool menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수,  240808 0 입력시 false값 반환을 위해 bool형으로 변경
     int choice;
     do {
         cout << "\n*** 식사 관리 ***" << endl;
@@ -79,12 +79,14 @@ void menu(mealmanage& mealmanager) { // 식사관리 레이아웃 출력 함수
         else if (choice == 4) { // 저장된 식사관리 csv파일 내용 출력
             mealmanager.displayMeals();
         }
-        else if (choice != 0) { // 아직 메인으로 돌아가는 부분은 구현 X
-            cout << "잘못된 선택입니다." << endl; 
+        else if (choice == 0) {
+            return false;  // 240808 메인 메뉴로 돌아가기 위해 false 반환
+        }
+        else {
+            cout << "잘못된 선택입니다." << endl;
         }
     } while (choice != 0);
 }
-
 /*
     메인 함수의 초기 메뉴 출력 부분도 함수로 따로 빼서 작성할 예정
 */
@@ -99,27 +101,36 @@ int main() {
     mealmanage mealmanager;
     mealmanager.loadFromCSV(meal_filename);
 
-    cout << "---VEDA 헬스케어에 오신 것을 환영합니다.---" << endl;
-    cout << "1. 고객관리" << endl;
-    cout << "2. 운동관리" << endl;
-    cout << "3. 식단관리" << endl;
-    cin >> main_num;
+    do {
+        cout << "---VEDA 헬스케어에 오신 것을 환영합니다.---" << endl;
+        cout << "1. 고객관리" << endl;
+        cout << "2. 운동관리" << endl;
+        cout << "3. 식단관리" << endl;
+        cout << "0. 프로그램 종료" << endl;
+        cout << "선택: ";
+        cin >> main_num;
 
-    if (main_num == 1) { // 고객관리 저장 내용 출력
-        string filename = "customers.csv";
-        vector<Customer> customers = readCustomersFromCSV(filename);
+        if (main_num == 1) { // 고객관리 저장 내용 출력
+            string filename = "customers.csv";
+            vector<Customer> customers = readCustomersFromCSV(filename);
 
-        cout << "CSV 파일에서 읽은 고객 정보:" << endl;
-        for (const auto& customer : customers) {
-            customer.display();
+            cout << "CSV 파일에서 읽은 고객 정보:" << endl;
+            for (const auto& customer : customers) {
+                customer.display();
+            }
         }
-    }
 
-    else if (main_num == 3) { // 식사관리 레이아웃 함수를 출력
+        else if (main_num == 3) { // 식사관리 레이아웃 함수를 출력
 
-        mealmanager.loadFromCSV(meal_filename);
-        menu(mealmanager);
-    }
+            if (!menu(mealmanager)) { // 240808 false값이 들어올 시 다시 돌아와 continue 수행
+                continue;  // 240808 메인 메뉴로 돌아가기
+            }
+        }
+        else if (main_num != 0) {
+            cout << "잘못된 선택입니다." << endl;
+        }
+
+    } while (main_num != 0); // 240808 반복적으로 표시하고 0을 입력시 종료를 위해 do-while문 사용 
 
     mealmanager.saveToCSV(meal_filename); // 입력 및 수정한 내용 저장
 
